@@ -1,11 +1,12 @@
 import { Router } from 'express';
-import userRoutes from './userRoutes.js';
 import adminRoutes from './admin.js';
+import { login } from '../controllers/userController.js';
 
 const router = Router();
 
-router.use('/users', userRoutes);    // e.g., Login route
+router.post('/login', login);   // e.g., Login route
 router.use('/admin', adminRoutes);   // Admin-specific routes like creating headteacher
+
 
 // Home route
 router.get('/', (req, res) => {
