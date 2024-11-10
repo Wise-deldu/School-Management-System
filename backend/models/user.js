@@ -29,7 +29,11 @@ User.init(
     superAdminActive: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
-      comment: 'Used to control if the super-admin is currently active',
+    },
+    staffID: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      comment: 'Unique ID for staff members (e.g., STA240001)',
     },
   },
   {
@@ -44,6 +48,13 @@ User.init(
         }
       },
     },
+    // Add unique constraint separately
+    indexes: [
+      {
+        unique: true,
+        fields: ['staffID'],
+      },
+    ],
   }
 );
 

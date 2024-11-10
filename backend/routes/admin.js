@@ -1,6 +1,7 @@
 import express from 'express';
 import bcrypt from 'bcrypt';
 import User from '../models/user.js';
+import { generateStaffID } from '../helpers/generateStaffID.js';
 
 const router = express.Router();
 
@@ -18,12 +19,16 @@ router.post('/create-headteacher', async (req, res) => {
     // Hash the headteacher's password
     const hashedPassword = await bcrypt.hash(password, 10);
 
+    // Generate a unique staffID for the headteacher
+    const staffID = await generateStaffID();
+
     // Create the headteacher user with active status
     const headteacher = await User.create({
       username,
       password: hashedPassword,
       role: 'headteacher',
       isActive: true, // Ensure headteacher is set to active
+      staffID, // Assign generated staffID
     });
 
     // Deactivate the super admin
@@ -35,6 +40,7 @@ router.post('/create-headteacher', async (req, res) => {
         username: headteacher.username,
         role: headteacher.role,
         isActive: headteacher.isActive,
+        staffID: headteacher.staffID, // Include staffID in response
       },
     });
   } catch (error) {
