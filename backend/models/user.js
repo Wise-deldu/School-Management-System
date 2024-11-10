@@ -35,6 +35,10 @@ User.init(
       allowNull: true,
       comment: 'Unique ID for staff members (e.g., STA240001)',
     },
+    needsPasswordChange: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true, // Set to true when the user needs to change their password
+    }
   },
   {
     sequelize,
