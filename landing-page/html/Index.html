@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Akatsi College of Education</title>
+  <link rel="stylesheet" href="Index.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="navbar-brand">Akatsi College of Education</div>
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <button class="btn-login" onclick="navigateToLogin()">Login</button>
+      <button class="btn-signup" onclick="navigateToSignup()">Sign Up</button>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Welcome to Akatsi College Practise School</h1>
+      <p>Providing quality education to inspire, nurture, and shape future leaders.</p>
+      <button class="btn-get-started" onclick="navigateToSignup()">Get Started</button>
+    </div>
+    <div class="hero-image">
+      <img src="./Images/akatsii.jpeg" alt="School Image"/>
+    </div>
+  </section>
+
+  <section id="about" class="about-section">
+    <div class="about-image">
+      <img src="./Images/akatsi.jpeg" alt="About Akatsi College" />
+    </div>
+    <div class="about-text">
+      <h2>About Akatsi College Practise School</h2>
+      <p>Akatsi College Practise School is dedicated to fostering a nurturing and inspiring learning environment. Our mission is to equip students with the skills and knowledge needed to excel academically and contribute positively to society.</p>
+      <p>Our committed staff, innovative programs, and supportive community work together to provide an enriching experience for each student. Join us on this journey of growth and achievement.</p>
+    </div>
+  </section>
+
+  <section id="contact" class="contact-section">
+    <h2>Contact Us</h2>
+    <p>Have any questions? Get in touch with us!</p>
+    <div class="contact-info">
+      <p><strong>Email:</strong> info@akatsicollege.edu</p>
+      <p><strong>Phone:</strong> +233 456 7890</p>
+      <div class="socials">
+        <a href="https://www.facebook.com/akatsico/" class="social-link" target="_blank">Facebook</a>
+        <a href="https://x.com/AkatsiOf" class="social-link" target="_blank">Twitter</a>
+        <a href="https://en.wikipedia.org/wiki/Akatsi_College_of_Education" class="social-link" target="_blank">Wikipedia</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>&copy; 2024 Akatsi College Practise School. All Rights Reserved.</p>
+  </footer>
+  <script src="./App.js"></script>
+</body>
+</html>
