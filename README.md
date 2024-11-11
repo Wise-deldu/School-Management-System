@@ -1,3 +1,2 @@
-# School Management System - Backend
-
+# School Management System - Backend & Frontend
 *Under construction*
