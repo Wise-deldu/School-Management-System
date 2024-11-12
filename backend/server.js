@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import bcrypt from 'bcrypt';
+import sequelize from './config/db.js';  // This is where Sequelize is initialized
 import routes from './routes/index.js';
 import User from './models/user.js';
 
@@ -9,29 +10,56 @@ dotenv.config();
 const app = express();
 const PORT = parseInt(process.env.PORT, 10) || 3000;
 
-app.use(express.json());
-app.use('/', routes);
+const startServer = async () => {
+  try {
+    // Authenticate database connection
+    await sequelize.authenticate();
+    console.log('Database connection established successfully.');
 
-app.use((req, res) => {
-  res.status(404).json({ error: 'Route not found' });
-});
+    // Seed Super Admin
+    await seedSuperAdmin();
 
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({ error: 'Something went wrong' });
-});
+    // Middleware setup
+    app.use(express.json());
+    app.use('/', routes);
 
-export default async function seedSuperAdmin() {
+    // 404 route
+    app.use((req, res) => {
+      res.status(404).json({ error: 'Route not found' });
+    });
+
+    // Error handling middleware
+    app.use((err, req, res, next) => {
+      console.error(err.stack);
+      res.status(500).json({ error: 'Something went wrong' });
+    });
+
+    // Start the server
+    app.listen(PORT, () => {
+      console.log(`🚀 Server is running on http://localhost:${PORT}`);
+    });
+  } catch (error) {
+    console.error('Error starting the server:', error);
+  }
+};
+
+// Seed Super Admin function
+const seedSuperAdmin = async () => {
   try {
     console.log('Checking for super admin user...');
     const superAdmin = await User.findOne({ where: { role: 'super-admin' } });
     if (!superAdmin) {
+      console.log('Creating super admin user...');
       const hashedPassword = await bcrypt.hash(process.env.SUPER_ADMIN_PASSWORD, 10);
       await User.create({
-        username: process.env.SUPER_ADMIN_USERNAME,
-        password: hashedPassword,
+        firstname: 'Super',
+        middlename: '',
+        lastname: 'Admin',
         role: 'super-admin',
         superAdminActive: true,
+        contact: '1234567890',
+        email: 'superadmin@example.com',
+        password: hashedPassword
       });
       console.log('Super admin user created.');
     } else {
@@ -40,14 +68,6 @@ export default async function seedSuperAdmin() {
   } catch (error) {
     console.error('Error seeding super admin:', error);
   }
-}
-
-// Start the server
-const startServer = async () => {
-  await seedSuperAdmin();
-  app.listen(PORT, () => {
-    console.log(`🚀 Server is running on http://localhost:${PORT}`);
-  });
 };
 
 startServer();

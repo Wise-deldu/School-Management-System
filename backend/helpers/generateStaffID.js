@@ -6,7 +6,7 @@ export const generateStaffID = async () => {
 
   // Find the latest staff ID
   const latestHeadteacher = await User.findOne({
-    where: { role: 'headteacher' },
+    where: { role: ['headteacher', 'teacher'] },
     order: [['createdAt', 'DESC']],
   });
 

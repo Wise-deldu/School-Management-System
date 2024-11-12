@@ -6,10 +6,20 @@ class User extends Model {}
 // Define the User model
 User.init(
   {
-    username: {
+    firstname: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
+      validate: {
+        notEmpty: true,
+      },
+    },
+    middlename: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    lastname: {
+      type: DataTypes.STRING,
+      allowNull: false,
       validate: {
         notEmpty: true,
       },
@@ -37,14 +47,14 @@ User.init(
     },
     needsPasswordChange: {
       type: DataTypes.BOOLEAN,
-      defaultValue: true, // Set to true when the user needs to change their password
-    }
+      defaultValue: true,
+    },
   },
   {
     sequelize,
     modelName: 'User',
     tableName: 'users',
-    timestamps: true, // Adds createdAt and updatedAt fields automatically
+    timestamps: true,
     hooks: {
       beforeCreate: async (user) => {
         if (user.role === 'super-admin') {
@@ -52,7 +62,6 @@ User.init(
         }
       },
     },
-    // Add unique constraint separately
     indexes: [
       {
         unique: true,

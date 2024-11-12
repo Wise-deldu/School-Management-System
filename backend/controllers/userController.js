@@ -3,9 +3,14 @@ import jwt from 'jsonwebtoken';
 import User from '../models/user.js';
 
 export const login = async (req, res) => {
-  const { username, password } = req.body;
+  const { firstname, lastname, password } = req.body; // Adjusted to use firstname and lastname
   try {
-    const user = await User.findOne({ where: { username } });
+    // Search for user based on firstname and lastname
+    const user = await User.findOne({ 
+      where: { firstname, lastname } 
+    });
+
+    // Check if the user exists and password matches
     if (!user || !(await bcrypt.compare(password, user.password))) {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
