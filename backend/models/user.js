@@ -16,11 +16,21 @@ User.init(
     middlename: {
       type: DataTypes.STRING,
       allowNull: true,
+      defaultValue: '',
     },
     lastname: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
+        notEmpty: true,
+      },
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+      validate: {
+        isEmail: true,
         notEmpty: true,
       },
     },
@@ -66,6 +76,10 @@ User.init(
       {
         unique: true,
         fields: ['staffID'],
+      },
+      {
+        unique: true,
+        fields: ['email'],
       },
     ],
   }

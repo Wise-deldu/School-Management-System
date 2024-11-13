@@ -29,6 +29,13 @@ export const createTeacher = async (req, res) => {
       return res.status(400).json({ message: `Class must be one of the following: ${validClasses.join(', ')}` });
     }
 
+    // Check if the logged-in user is a headteacher
+    const loggedInUser = await User.findByPk(req.user.id);  // Assuming req.user.id is set by the verifyToken middleware
+
+    if (loggedInUser.role !== 'headteacher') {
+      return res.status(403).json({ message: 'Only a headteacher can create teachers.' });
+    }
+
     // Generate temporary password and hashed password
     const temporaryPassword = generateTemporaryPassword();
     const hashedPassword = await bcrypt.hash(temporaryPassword, 10);
@@ -56,6 +63,7 @@ export const createTeacher = async (req, res) => {
       message: 'Teacher created successfully.',
       teacher: {
         firstname: teacher.firstname,
+        middlename: teacher.middlename,
         lastname: teacher.lastname,
         staffID: teacher.staffID,
         role: teacher.role,

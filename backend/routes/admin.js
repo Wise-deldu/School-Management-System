@@ -60,7 +60,7 @@ router.post('/create-headteacher', async (req, res) => {
       needsPasswordChange: true,
     });
 
-    // Send response with created headteacher details (no email sent)
+    // Send response with created headteacher details and temporary password
     res.status(201).json({
       message: 'Headteacher created successfully.',
       headteacher: {
@@ -73,6 +73,7 @@ router.post('/create-headteacher', async (req, res) => {
         staffID: headteacher.staffID,
         role: headteacher.role,
         isActive: headteacher.isActive,
+        temporaryPassword // Including temporary password in response
       },
     });
   } catch (error) {
