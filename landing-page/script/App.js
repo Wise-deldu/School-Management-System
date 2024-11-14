@@ -31,11 +31,11 @@ function navigateToSignup() {
     const role = sessionStorage.getItem('role');
   
     if (role === 'Administrator') {
-      window.location.href = 'https://school-management-frontend-steel.vercel.app/dashboard';
+      window.location.href = 'http://localhost:3000/dashboard';
     } else if (role === 'Teacher') {
-      window.location.href = 'https://school-management-frontend-steel.vercel.app/dashboard';
+      window.location.href = 'http://localhost:3000/dashboard';
     } else if (role === 'Investigator') {
-      window.location.href = 'https://school-management-frontend-steel.vercel.app/dashboard';
+      window.location.href = 'http://localhost:3000/dashboard';
     } else {
       alert('Login failed: Role not recognized');
     }

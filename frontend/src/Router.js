@@ -7,12 +7,37 @@ import Performance from './Routes/Performance'
 import Students from './Routes/Students'
 import Subjects from './Routes/Subjects'
 import Teachers from './Routes/Teachers'
+import Login from './Routes/Login'
+import LandingPage from './Routes/LandingPage'
+import HeadTeachersList from "./Routes/HeadTeachers";
 
 const App = createBrowserRouter([
+  {
+        path: "/landingPage",
+        element: <LandingPage />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      
+
   {
     path: "/",
     element: <Layouts />,
     children: [
+      {
+        path: "/landingPage",
+        element: <LandingPage />,
+      },
+      // {
+      //   path: "/register",
+      //   element: <Register />,
+      // },
+      {
+        path: "/login",
+        element: <Login />,
+      },
       {
         path: "/dashboard",
         element: <Dashboard />,
@@ -36,6 +61,10 @@ const App = createBrowserRouter([
       {
         path: "/teachers",
         element: <Teachers />,
+      },
+      {
+        path: "/head-teachers",
+        element: <HeadTeachersList />,
       }
     ],
   },
