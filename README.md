@@ -1,9 +1,11 @@
 # School Management System
 School Management System
+
 A web application designed to digitize student records for schools, making it easier to manage admissions, attendance, and grades on a centralized platform. This project reduces the administrative workload and minimizes errors, helping school staff streamline daily operations.
 
 
 Features
+
 Student Admission Management: Add and manage student admission details.
 Attendance Tracking: Mark and review student attendance.
 Grade Management: Enter, update, and track student grades.
