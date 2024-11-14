@@ -45,4 +45,13 @@
     margin-right: 10px;
     padding-right: 16px;
   }
+  .profile{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
   
+  .profile button{
+    padding: 8px 16px;
+    margin-left: 25px;
+  }

@@ -6,11 +6,11 @@ import '../Components/Components.css'
 
 const TeachersList = () => {
   const [teachers, setTeachers] = useState([
-    { code: 1, name: 'Mr. Red', subject: 'Math', contact: 'green@example.com' },
-    { code: 2, name: 'Mrs. Brown', subject: 'Science', contact: 'brown@example.com' },
-    { code: 2, name: 'Ms. Green', subject: 'English', contact: 'brown@example.com' },
-    { code: 2, name: 'Mr. Yellow', subject: 'Geography', contact: 'brown@example.com' },
-    { code: 2, name: 'Mr. White', subject: 'Muslim', contact: 'brown@example.com' },
+    { code: 1, name: 'Mr. Red', class: 'Class 3', email: 'green@example.com' },
+    { code: 2, name: 'Mrs. Brown', class: 'Class 8', email: 'brown@example.com' },
+    { code: 2, name: 'Ms. Green', class: 'Class 4', email: 'brown@example.com' },
+    { code: 2, name: 'Mr. Yellow', class: 'Class 5', email: 'brown@example.com' },
+    { code: 2, name: 'Mr. White', class: 'Class 6', email: 'brown@example.com' },
   ]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   
@@ -26,7 +26,7 @@ const TeachersList = () => {
         <h2>Teachers</h2>
         <button onClick={openModal}>New Teacher</button>
       </div>
-      <List items={teachers} fields={['code', 'name', 'subject', 'contact']} />
+      <List items={teachers} fields={['code', 'name', 'class', 'email']} />
       <TeacherModal isOpen={isModalOpen} onRequestClose={closeModal} onAddTeacher={addTeacher} />
     </div>
   );

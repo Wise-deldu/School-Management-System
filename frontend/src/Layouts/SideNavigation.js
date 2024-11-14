@@ -4,6 +4,11 @@ import Icon from '../Components/Icon';
 
 const SideNavigation = () => {
 
+  let profile = localStorage.getItem('profile')
+  console.log(profile);
+  
+
+
   return (
     <nav className="sidebar">
       <ul>
@@ -31,14 +36,22 @@ const SideNavigation = () => {
             Subjects
           </Link>
         </li>
-        <li>
+        {profile === 'SUPER-ADMIN'  && <li>
+          <Link 
+            to="/head-teachers">
+            <Icon name="teacher"
+            className="link" />
+            HeadTeachers
+          </Link>
+        </li>}
+        {(profile === 'SUPER-ADMIN' || profile === 'HEADTEACHER') && <li>
           <Link 
             to="/teachers">
             <Icon name="teacher"
             className="link" />
             Teachers
           </Link>
-        </li>
+        </li>}
         <li>
           <Link 
             to="/performance">
